@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tour List</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Available Tours</h1>
+        <input type="text" v-model="search" placeholder="Search by name">
+
+        <input type="text" v-model="searchDB" placeholder="Search by name DB">
+        <ul id="tour-list">
+            {% for tour in tours %}
+            <li data-name="{{ tour.name }}" data-id="{{ tour.id }}">
+                {{ tour.name }} (ID: {{ tour.id }})
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+<script>
+    const { createApp, ref, watch } = Vue;
+
+    createApp({
+        setup() {
+            const search = ref('');
+
+            watch(search, (value) => {
+                const items = document.querySelectorAll('#tour-list li');
+                items.forEach(item => {
+                    const name = item.dataset.name.toLowerCase();
+                    item.style.display = name.includes(value.toLowerCase()) ? '' : 'none';
+                });
+            });
+
+            watch(searchDB, (value) => {
+                const items = document.querySelectorAll('#tour-list li');
+
+            });
+
+            return { search };
+        }
+    }).mount('#app');
+</script>
+
+</body>
+
+</html>
