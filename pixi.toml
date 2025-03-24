@@ -1,5 +1,5 @@
 [project]
-authors = ["mobilsem <it@mobilsem.com>"]
+authors = ["Dave I."]
 channels = ["conda-forge"]
 description = "Add a short description here"
 name = "py-voyages"
